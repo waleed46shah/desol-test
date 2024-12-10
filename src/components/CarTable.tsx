@@ -9,7 +9,7 @@ interface CarTableProps {
   loading: boolean;
 }
 
-const CarTable: React.FC<CarTableProps> = ({ cars, loading }) => {
+const CarTable = ({ cars, loading }: CarTableProps) => {
   return (
     <Table
       loading={loading}

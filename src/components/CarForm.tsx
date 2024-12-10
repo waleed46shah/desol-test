@@ -11,7 +11,7 @@ interface CarFormProps {
   onCarSubmitted: () => void;
 }
 
-const CarForm: React.FC<CarFormProps> = ({ onCarSubmitted }) => {
+const CarForm = ({ onCarSubmitted }: CarFormProps) => {
   const [form] = Form.useForm();
   const [fileList, setFileList] = useState<UploadFile[]>([]);
   const [imageUrls, setImageUrls] = useState<string[]>([]);
