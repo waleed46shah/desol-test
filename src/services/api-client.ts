@@ -2,7 +2,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 
 const axiosInstance: AxiosInstance = axios.create({
-  baseURL: "https://desol-test-be.vercel.app/api/",
+  baseURL: process.env.NEXT_PUBLIC_BASE_URL,
 });
 
 class APIClient<TRequest, TResponse> {
