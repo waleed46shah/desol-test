@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useEffect } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { getUserId } from "@/utils/auth.utils";
 
@@ -13,6 +13,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
+  const [loading, setLoading] = useState(true);
 
   const checkAuth = () => {
     const userId = getUserId();
@@ -28,7 +29,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     } else if (isAuthenticated && isAuthPage) {
       router.push("/");
     }
+
+    setLoading(false);
   }, [pathname, router]);
+
+  if (loading) {
+    return null;
+  }
 
   return (
     <AuthContext.Provider value={{ checkAuth }}>
